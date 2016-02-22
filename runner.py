@@ -1,6 +1,6 @@
 import logging
 
-from config.test import RM_PROCESS,HTTPD_PROCESS,POSTFIX_PROCESS
+from config.test import RM_PROCESS,HTTPD_PROCESS,POSTFIX_PROCESS,COMMAND_1
 from state import ProcessState, Command
 from utils import initlogging
 from pexec import prunner
