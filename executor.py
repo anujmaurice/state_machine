@@ -9,7 +9,15 @@ def user_confirmation(f):
         print "-"*10
         print self.cmdlist
         print "-"*10
+        if self.force_yes:
+            self.logger.info("Force Yes set to true !")
+            self.logger.info("Executing .. {0}".format(self.cmdlist))
+            return f(self)
         u_input = raw_input("Press Y to proceed: ")
+        if self.force_yes:
+            self.logger.info("Force Yes set to true !")
+            self.logger.info("Executing .. {0}".format(self.cmdlist))
+            return f(self)
         if "Y" == u_input.upper().strip():
             self.logger.info("User input .. {0}".format(u_input))
             self.logger.info("Executing .. {0}".format(self.cmdlist))
@@ -22,9 +30,10 @@ def user_confirmation(f):
 
 class executeCommand():
 
-    def __init__(self, cmdlist=[]):
+    def __init__(self, cmdlist=[], force_yes=False):
         self.rcode = 2  # defaults to error
         self.logger = logging.getLogger('Maintenance.Automation')
+        self.force_yes = force_yes
         if not cmdlist:
             raise Exception
         else:
