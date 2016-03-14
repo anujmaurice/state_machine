@@ -4,4 +4,7 @@
 * move getstate to another function
 * decorator pattern for user input in execute
 
-* command states 
+* command states
+
+* dry run
+* force yes

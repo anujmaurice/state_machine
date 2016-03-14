@@ -3,15 +3,18 @@ import logging
 
 
 class ProcessState():
+    # Class for process states
 
     def __init__(self, process_defn):
-        states = ["Started", "Stopped", "Error"]
         self.state = self.getstate(process_defn)
         self.logger = logging.getLogger('Maintenance.Automation')
         self.logger.info("Assigning state as {0}".format(self.state))
         self.defn = process_defn
 
     def getstate(self, pdefn):
+        # iterates through each defined state
+        # in the process definition and trying
+        # to check at what state the object is in
         logger = logging.getLogger('Maintenance.Automation')
         statelist = []
         for k in pdefn.keys():
@@ -30,6 +33,9 @@ class ProcessState():
             raise Exception
 
     def changestate(self, nstate):
+        # to change the state of the object to another state.
+        # state is transistioned only after the verification returns
+        # a success.
         if self.state == nstate:
             self.logger.info("State is already {0}".format(nstate))
             return True
